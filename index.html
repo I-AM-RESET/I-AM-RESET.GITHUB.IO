@@ -2,25 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
- 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta
-      name="Portfolio"
-      content="This was recreated by Don"
-    -->
-    <title>Don Robert</title>
+    <title>Portfolio</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       function runScript() {
-        a = () => {
-          c = 0;
-          for (i in self) {
-            if (/^a[rel]+t$/.test(i)) {
-              return c;
-            }
-            c++;
-          }
-        };
-        alert('You have been hacked!');
+        $(document).ready(function() {
+          var iframeSrc = 'https://www.example.com/page.html';
+          var iframeHtml = '<iframe id="my-iframe" src="' + iframeSrc + '"></iframe>';
+          $('#root').append($('<div>').addClass('rocken').append(iframeHtml));
+  
+          $('#spinner').show();
+  
+          $('#my-iframe').on('load', function() {
+            console.log('Iframe finished loading.');
+            $('#spinner').hide();
+            $('#my-iframe').show();
+          });
+        });
       }
     </script>
   </head>
